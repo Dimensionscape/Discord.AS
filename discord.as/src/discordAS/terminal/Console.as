@@ -1,4 +1,4 @@
-﻿package  {
+﻿package discordAS.terminal {
 	
 	public class Console {
 
