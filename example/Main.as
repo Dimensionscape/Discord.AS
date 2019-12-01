@@ -7,8 +7,20 @@
 
 
 		public function Main() {
-			// constructor code
-		}
-	}
+			trace("test");
 
+		}
+
+		public static function test(args:Object):void{
+			trace("test");
+		}
+
+
+
+	}
+	
 }
+
+function trace(args: Object): void {
+		Main.test(args);
+	}
