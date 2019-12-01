@@ -11,9 +11,14 @@
 
 		private var _console: TextField;
 		private var _scrollBar: UIScrollBar;
-		private var _traceLogs: Boolean = false;
+		private var _traceLogs: Boolean = true;
 
 		public function UI() {
+			addEventListener(Event.ADDED_TO_STAGE, init);
+			
+		}
+		
+		private function init(e:Event):void{
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 
@@ -42,7 +47,6 @@
 			_scrollBar.visible = false;
 			stage.nativeWindow.addEventListener(Event.RESIZE, resize);
 			stage.addChild(_scrollBar);
-			
 		}
 
 		public function log(...args): void {
