@@ -5,8 +5,20 @@
 	import flash.events.EventDispatcher;
 
 	public class Client extends EventDispatcher{
-		private var _console: Console;
 		public static const INIT:String = "init";
+		private var _console: Console;
+		private var _token:String;
+		private var _connected:Boolean;
+		private var _authenticated:Boolean;
+		private var _heartbeatInterval: int;
+		private var _bot: Boolean;
+		private var _runtime: String;
+		private var _username: String;
+		private var _discriminator: String;
+		private var _email: String;
+		private var _verified: Boolean;
+		private var _guild:String;
+		private var _channel:String;
 
 		public function Client(stage: Stage) {
 			_console = new Console(stage);
