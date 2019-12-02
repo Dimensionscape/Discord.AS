@@ -1,5 +1,5 @@
 # Discord.AS
-Discord Bot API for Adobe AIR and AS3
+Discord Bot API for Adobe AIR and AS3\n
 Usage case as included in example:
 
 ```actionscript3
