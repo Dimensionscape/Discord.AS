@@ -4,6 +4,7 @@
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.system.Capabilities;
+	import discordAS.event.ClientEvent;
 
 	public class Client extends EventDispatcher {
 		public static const INIT: String = "init";
@@ -52,7 +53,10 @@
 		}
 
 		public function login(token: String): void {
-			_manager.clientAuth(token);
+			this.token = token;
+			this.dispatchEvent(new ClientEvent(ClientEvent.LOGIN, token));
+			//_manager._http.manager.addEventListener("GATEWAY_REPLY", _gateway.gatewayManager.webSocketConnect);
+
 		}
 		
 		public function on(reference: String, onFunction: Function): void {

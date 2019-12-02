@@ -6,15 +6,15 @@
 
 	public class Gateway extends EventDispatcher {
 		private var _client:Client;
-		private var _gatewayManager:GatewayManager;
+		private var _manager:GatewayManager;
 		public static const CONNECTED:String = "connected";
 		
-		public function get gatewayManager():GatewayManager{
-			return _gatewayManager;
+		public function get manager():GatewayManager{
+			return _manager;
 		}
 		public function Gateway(client:Client) {
 			_client = client;
-			_gatewayManager = new GatewayManager(_client);
+			_manager = new GatewayManager(_client);
 		}
 
 		public function opDelivery(data: Object, dataType: String) {
