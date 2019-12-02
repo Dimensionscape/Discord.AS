@@ -13,9 +13,7 @@
 		private var _heartbeatInterval: int;
 		private var _bot: Boolean;
 		private var _runtime: String;
-		private var _username: String;
 		private var _discriminator: String;
-		private var _email: String;
 		private var _verified: Boolean;
 		private var _guild:String;
 		private var _channel:String;
