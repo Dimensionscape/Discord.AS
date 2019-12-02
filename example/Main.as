@@ -9,7 +9,6 @@
 
 	public class Main extends MovieClip {
 	
-	public static var consoleClass:Class = Console;
 
 		public function Main() {
 			addEventListener(Event.ADDED_TO_STAGE, init);
@@ -24,7 +23,6 @@
 		
 		private function consoleInit(e:Event):void{
 			
-		print("test");	
 		}
 
 
