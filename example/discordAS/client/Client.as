@@ -23,7 +23,7 @@
 		public function Client(stage: Stage) {
 			_console = new Console(stage);
 			_console.addEventListener(Console.CONSOLE_LOADED, consoleInit);
-
+			
 		}
 		private function consoleInit(e:Event):void{
 			_console.removeEventListener(Console.CONSOLE_LOADED, consoleInit);	
