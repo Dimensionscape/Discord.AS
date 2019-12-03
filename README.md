@@ -18,7 +18,8 @@ package {
 		}
 
 		private function init(e: Event): void {
-			print("Hello World");			
+			print("Hello World");
+			_client.login("<YOUR-SECRET-TOKEN-HERE>");
 		}
 	}
 }
