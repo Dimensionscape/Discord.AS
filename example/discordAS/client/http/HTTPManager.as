@@ -12,8 +12,11 @@
 
 	public class HTTPManager extends EventDispatcher {
 		private var _client: Client
-		private var wssAddress: String;
-
+		private var _wssAddress: String;
+		
+		public function get wssAddress():String{
+			return _wssAddress;
+		}
 		public function HTTPManager(client: Client) {
 			_client = client;
 		}
@@ -64,10 +67,10 @@
 		}
 
 		private function gatewayReply(event: Event): void {
-			print("Returned: " + event.target.data);
-			wssAddress = JSON.parse(event.target.data).url;
+			print("Incoming Gateway Response");
+			_wssAddress = JSON.parse(event.target.data).url;
 			//.client.shards = JSON.parse(event.target.data).shards;
-			if (wssAddress == null) {
+			if (_wssAddress == null) {
 				print("ERROR: Connection failed. Try Again.");
 			} else {
 				this.dispatchEvent(new Event("GATEWAY_REPLY"));

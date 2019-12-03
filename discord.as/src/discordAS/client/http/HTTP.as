@@ -15,10 +15,12 @@
 			_client = client;
 			_manager = new HTTPManager(client);
 			_client.addEventListener(ClientEvent.LOGIN, gatewayHandler);
+
 		}
 
 		private function gatewayHandler(e: ClientEvent): void {
 			_manager.gatewayRequest(e.token);
+
 		}
 
 	}

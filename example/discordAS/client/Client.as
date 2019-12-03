@@ -55,7 +55,6 @@
 		public function login(token: String): void {
 			this.token = token;
 			this.dispatchEvent(new ClientEvent(ClientEvent.LOGIN, token));
-			//_manager._http.manager.addEventListener("GATEWAY_REPLY", _gateway.gatewayManager.webSocketConnect);
 
 		}
 		

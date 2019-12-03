@@ -11,43 +11,28 @@
 	import com.loadswf.events.SWFLoaderEvent;
 
 	public class SWFLoader extends EventDispatcher {
-		private var loader: Loader;
-		private var swfObj: Object;
-		private var filePath: String;
-		private var compressed: Boolean;
+		private var _loader: Loader;
+		private var _bytes: ByteArray;
 
 
-		public function SWFLoader(filePath: String) {
-			this.filePath = filePath;
+		public function SWFLoader(bytesClass: Class) {
+			_bytes = new bytesClass();
 		}
 
 		public function load(): void {
-			var file: File = new File(this.filePath);
-			var fileStream: FileStream = new FileStream();
-			fileStream.addEventListener(Event.COMPLETE, swfLoaded);
-			fileStream.openAsync(file, FileMode.READ);
-		}
-
-		private function swfLoaded(e: Event): void {
-			e.currentTarget.removeEventListener(Event.COMPLETE, swfLoaded);
-
-			var swf: ByteArray = new ByteArray()
-			FileStream(e.currentTarget).readBytes(swf);
-
-			var context: LoaderContext = new LoaderContext(false);
+			var context: LoaderContext = new LoaderContext(false,
+				ApplicationDomain.currentDomain);
 			context.allowCodeImport = true;
-			loader = new Loader();
-
-
-
-			loader.addEventListener(Event.ADDED, returnSWF);
-			loader.loadBytes(swf, context);
-			e.currentTarget.close();
+			_loader = new Loader();
+			_loader.loadBytes(_bytes, context);
+			_loader.addEventListener(Event.ADDED, returnSWF);
 		}
+
+
 
 		private function returnSWF(e: Event): void {
-			loader.removeEventListener(Event.ADDED, returnSWF);
-			dispatchEvent(new SWFLoaderEvent(SWFLoaderEvent.SWF_LOADED, loader.content));
+			_loader.removeEventListener(Event.ADDED, returnSWF);
+			dispatchEvent(new SWFLoaderEvent(SWFLoaderEvent.SWF_LOADED, _loader.content));
 		}
 	}
 

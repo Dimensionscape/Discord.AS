@@ -2,17 +2,20 @@
 	import discordAS.client.Client;
 	import flash.events.EventDispatcher;
 	import flash.events.Event;
+	import discordAS.client.http.HTTP;
 
 
 	public class Gateway extends EventDispatcher {
 		private var _client:Client;
 		private var _manager:GatewayManager;
+		internal var _http:HTTP;
 		public static const CONNECTED:String = "connected";
 		
 		public function get manager():GatewayManager{
 			return _manager;
 		}
-		public function Gateway(client:Client) {
+		public function Gateway(client:Client,http:HTTP) {
+			_http = http;
 			_client = client;
 			_manager = new GatewayManager(_client);
 		}

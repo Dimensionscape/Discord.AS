@@ -12,7 +12,7 @@
 		}
 
 		private function init(e: Event): void {
-			print("Hello World");			
+			print("Hello Bot");
 		}
 	}
 }
