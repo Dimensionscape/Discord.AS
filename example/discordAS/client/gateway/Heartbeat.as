@@ -34,7 +34,7 @@
 				"op": 1,
 				"d": date
 			}
-			//discord.payload.webSocketSend(message);
+			_client.manager.gateway.manager._webSocket.send(message);
 
 		}
 	}

@@ -34,7 +34,7 @@
 		}
 
 		private function messageDispatcher(data: Object): void {
-			print(JSON.stringify(data));
+		print(JSON.stringify(data));
 
 		}
 
@@ -72,8 +72,8 @@
 	
 
 
-	private function heartbeatAck(): void {
-		print("heartbeat");
+	private function heartbeatAck(data:Object = null): void {
+		//print("heartbeat");
 	}
 
 }
