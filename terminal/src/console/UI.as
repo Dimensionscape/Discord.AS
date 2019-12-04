@@ -50,9 +50,10 @@
 		}
 
 		public function log(...args): void {
-			_console.appendText(args.toString() + "\n");
+			_console.text+= "\n" + args.toString();
 			update();
 			if(_traceLogs) trace(args);
+			_console.scrollV = _console.maxScrollV;
 		}
 
 		private function update(e: Event = null): void {
@@ -61,6 +62,8 @@
 			} else {
 				_scrollBar.visible = false;
 			}
+			_scrollBar.update();
+			
 		}
 
 		private function resize(e: Event): void {

@@ -13,7 +13,11 @@
 	public class HTTPManager extends EventDispatcher {
 		private var _client: Client
 		private var _wssAddress: String;
+		private var _shards:int;
 		
+		public function get shards():int{
+			return _shards;
+		}
 		public function get wssAddress():String{
 			return _wssAddress;
 		}
@@ -69,7 +73,7 @@
 		private function gatewayReply(event: Event): void {
 			print("Incoming Gateway Response");
 			_wssAddress = JSON.parse(event.target.data).url;
-			//.client.shards = JSON.parse(event.target.data).shards;
+			_shards = JSON.parse(event.target.data).shards;
 			if (_wssAddress == null) {
 				print("ERROR: Connection failed. Try Again.");
 			} else {

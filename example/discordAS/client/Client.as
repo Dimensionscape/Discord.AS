@@ -12,7 +12,6 @@
 		private var _token: String;
 		internal var _connected: Boolean;
 		private var _authenticated: Boolean;
-		private var _heartbeatInterval: int;
 		private var _bot: Boolean;
 		private var _operatingSystem: String;
 		private var _runtime: String;
@@ -29,8 +28,11 @@
 		public function get token():String{
 			return _token;
 		}
-		public function set token(token:String):void{
-			_token = token;
+		public function get operatingSystem():String{
+			return _operatingSystem;
+		}
+		public function get runtime():String{
+			return _runtime;
 		}
 		public function get connected():Boolean{
 			return _connected;
@@ -53,7 +55,7 @@
 		}
 
 		public function login(token: String): void {
-			this.token = token;
+			this._token = token;
 			this.dispatchEvent(new ClientEvent(ClientEvent.LOGIN, token));
 
 		}
