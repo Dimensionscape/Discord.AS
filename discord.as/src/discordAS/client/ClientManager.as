@@ -14,6 +14,9 @@
 		public function get gateway():Gateway{
 			return _gateway;
 		}
+		public function get heartbeat():Heartbeat{
+			return _heartbeat;
+		}
 		
 		public function ClientManager(client: Client) {
 			_client = client;

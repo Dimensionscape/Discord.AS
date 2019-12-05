@@ -10,8 +10,9 @@
 		private var _client: Client;
 		internal var _http: HTTP;
 		private var _manager: GatewayManager;
-		private var _switchBoard: Array = [messageDispatcher, null, null, null, null, null, null, null, null, errorHandler, hello, heartbeatAck];
+		private var _switchBoard: Array = [dispatcher, null, null, null, null, null, null, null, null, errorHandler, hello, heartbeatAck];
 		private var _heartbeatInterval: int;
+		
 
 		public static const CONNECTED: String = "connected";
 
@@ -27,14 +28,15 @@
 			_client = client;
 			_http = http;
 			_manager = new GatewayManager(_client);
+			
 		}
 
 		internal function opDispatcher(e: WebSocketEvent): void {	
 			_switchBoard[e.opCode](e.data);
 		}
 
-		private function messageDispatcher(data: Object): void {
-		print(JSON.stringify(data));
+		private function dispatcher(data: Object): void {
+			_manager._gatewayDispatcher.dispatchDiscordEvent(data);			
 
 		}
 
@@ -43,9 +45,9 @@
 		}
 
 		private function hello(data: Object): void {
-			this.dispatchEvent(new Event(CONNECTED));
-			_heartbeatInterval = data.heartbeat_interval;
 			handshake();
+			_heartbeatInterval = data.d.heartbeat_interval;
+			this.dispatchEvent(new Event(CONNECTED));			
 		}
 
 		private function handshake(): void {
@@ -73,7 +75,7 @@
 
 
 	private function heartbeatAck(data:Object = null): void {
-		//print("heartbeat");
+		//print("heartbeat", _client.connected);
 	}
 
 }

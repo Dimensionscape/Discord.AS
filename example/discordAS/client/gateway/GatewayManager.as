@@ -10,11 +10,13 @@
 	public class GatewayManager {
 		private var _client: Client;
 		internal var _webSocket:WebSocket;
+		internal var _gatewayDispatcher:GatewayDispatcher;
 		
 
 		public function GatewayManager(client: Client) {
 			_client = client;
 			_client.addEventListener(ClientEvent.LOGIN, onLogin);
+			_gatewayDispatcher = new GatewayDispatcher(_client);
 		}
 
 		private function onLogin(e: ClientEvent): void {

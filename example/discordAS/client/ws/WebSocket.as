@@ -105,15 +105,18 @@
 
 		}
 
-		private function getFrameData(iDataInput: IDataInput): void {
+		private function getFrameData(iDataInput: IDataInput): void {			
 			var payload: Payload = new Payload(Payload.INCOMING_PAYLOAD, iDataInput);
+			
 			if(Payload._frameState==Payload.COMPLETE){
 			var dataObject: Object;
 			var dataRaw: String = Payload._incomingBytes.readUTFBytes(Payload._incomingBytes.length)
 			dataObject = JSON.parse(dataRaw);
-			
-			this.dispatchEvent(new WebSocketEvent(WebSocketEvent.NEW_MESSAGE, dataObject.d, dataObject.op));
-			}
+			this.dispatchEvent(new WebSocketEvent(WebSocketEvent.NEW_MESSAGE, dataObject, dataObject.op));
+			Payload._incomingBytes = null;
+			Payload._incominglength = 0;
+			if(iDataInput.bytesAvailable>0) getFrameData(iDataInput);
+			}			
 		}
 
 		private function parseHandshake(data: String): void {

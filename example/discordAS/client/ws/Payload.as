@@ -38,7 +38,7 @@ package discordAS.client.ws {
 		internal static var _frameState: String = COMPLETE;
 		internal static var _incomingBytes: ByteArray;
 		internal static var _outgoingBytes: ByteArray;
-		internal static var _incominglength;
+		internal static var _incominglength: int;
 		public static const INCOMING_PAYLOAD: String = "incomingPayload";
 		public static const OUTGOING_PAYLOAD: String = "outgoingPayload";
 
@@ -58,7 +58,7 @@ package discordAS.client.ws {
 		public function Payload(type: String, iDataInput: IDataInput, data: ByteArray = null, op: uint = -1) {
 
 			if (type == INCOMING_PAYLOAD) {
-				if (_frameState == COMPLETE) _incomingBytes = new ByteArray();
+				if (_frameState === COMPLETE) _incomingBytes = new ByteArray();
 				parseFrame(iDataInput);
 			} else if (type == OUTGOING_PAYLOAD) {
 				_frameBytes = new ByteArray();
@@ -165,14 +165,16 @@ package discordAS.client.ws {
 			}
 
 			if (data.bytesAvailable >= _incominglength) {
+				_frameState = COMPLETE;
 				_incomingBytes.endian = Endian.BIG_ENDIAN;
 				data.readBytes(_incomingBytes, 0, _incominglength);
 				_incomingBytes.position = 0;
-				_frameState = COMPLETE;
-			} else {
-				_frameState = WAITING;
+				return;
 			}
 
+			if (data.bytesAvailable < _incominglength) {
+				_frameState = WAITING;
+			}
 
 
 		}

@@ -13,7 +13,7 @@
 		}
 		public function loop(e: Event): void {
 			this.dispatchEvent(new Event("ENTER_FRAME"));
-			_client.manager._heartbeat.rest();	
+			if(_client.connected) _client.manager._heartbeat.rest();	
 		}
 
 	}

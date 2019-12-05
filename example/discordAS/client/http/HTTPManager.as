@@ -72,6 +72,7 @@
 
 		private function gatewayReply(event: Event): void {
 			print("Incoming Gateway Response");
+			trace(event.target.data);
 			_wssAddress = JSON.parse(event.target.data).url;
 			_shards = JSON.parse(event.target.data).shards;
 			if (_wssAddress == null) {

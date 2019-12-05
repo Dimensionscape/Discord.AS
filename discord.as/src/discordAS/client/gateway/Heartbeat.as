@@ -1,14 +1,16 @@
 ﻿package discordAS.client.gateway {
 	import discordAS.client.Client;
+	import flash.events.EventDispatcher;
+	import flash.events.Event;
 
-	public class Heartbeat {
+	public class Heartbeat extends EventDispatcher{
 
 		private var _client:Client;
 		public var date: Number
-		public var timeBuffer: Number
-		public var timeCache: Number
-		public var time: Number
-
+		public var timeBuffer: Number;
+		public var timeCache: Number;
+		public var time: Number;
+		
 		public function Heartbeat(client:Client) {
 			_client = client;
 			timeBuffer = 0;
@@ -24,8 +26,8 @@
 				if (timeCache < _client.manager.gateway.heartbeatInterval) {
 					timeCache += timeBuffer;
 				} else {
-					pulse();
 					timeCache = 0;
+					pulse();
 				}
 			}
 		}
