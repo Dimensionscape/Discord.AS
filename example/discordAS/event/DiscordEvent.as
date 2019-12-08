@@ -38,7 +38,7 @@
 		public static const MESSAGE_REACTION_REMOVE: String = "messageReactionRemove";
 		public static const MESSAGE_REACTION_REMOVE_ALL: String = "messageReactionRemoveAll";
 		public static const PRESENCE_UPDATE: String = "presenceUpdate";
-		public static const PRESENCES_REPLACE:String = "presencesReplace";
+		public static const PRESENCE_REPLACE:String = "presenceReplace";
 		public static const CLIENT_STATUS_OBJECT: String = "clientStatusObject";
 		public static const ACTIVITY_OBJECT: String = "activityObject";
 		public static const TYPING_START: String = "typingStart";

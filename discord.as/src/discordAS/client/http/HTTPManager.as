@@ -82,6 +82,27 @@
 			}
 
 		}
+		
+		public function sendMessageToChannel(content: String, channelID:String): void {
+			var httpLoader = new URLLoader;
+			var httpRequest: URLRequest = new URLRequest();
+			httpRequest.method = "POST";
+			var httpVariables: URLVariables = new URLVariables();
+			httpVariables.content = content;
+
+			var header = new URLRequestHeader("Authorization", "Bot " + _client.token);
+			httpRequest.requestHeaders.push(header);
+			httpRequest.url = "https://discordapp.com/api/channels/" + channelID + "/messages";
+			httpRequest.data = httpVariables;
+			httpLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+			httpLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, httpResponseStatusHandler);
+			httpLoader.addEventListener(Event.COMPLETE, messageSent);
+			httpLoader.load(httpRequest);
+		}
+		
+		private function messageSent(e:Event):void{
+			print("Message Event Sent");
+		}
 
 
 	}
