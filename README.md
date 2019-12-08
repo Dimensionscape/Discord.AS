@@ -27,7 +27,9 @@ package {
 		
 		private function messageCreate(e:DiscordEvent):void{
 			var message:Object = e.data.d;
-			print(message.channel_id, message.content);
+			if(message.content == "!Hello"){
+			_client.send("World", message.channel_id);
+			}
 		}
 	}
 }
